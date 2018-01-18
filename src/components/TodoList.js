@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TodoItem from './TodoItem';
 
 const URL = 'https://afternoon-dawn-27478.herokuapp.com/api/todos';
 
@@ -36,8 +37,20 @@ class TodoList extends Component {
   }
 
   render() {
+    const todos = this.state.todos.map(todo => (
+      <TodoItem
+        key={todo._id}
+        {...todo}
+      />
+    ));
     return (
-      <h1>Todo List!</h1>
+      <div>
+        <h1>Todo List!</h1>
+
+        <ul>
+          {todos}
+        </ul>
+      </div>
     );
   }
 }
