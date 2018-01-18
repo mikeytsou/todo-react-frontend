@@ -56,12 +56,14 @@ class TodoList extends Component {
       />
     ));
     return (
-      <div>
-        <h1>Todo List!</h1>
+      <div className="container">
+        <h1>Todo<span>List</span></h1>
+
+        <h2>A todo list built with express, mongodb, and react</h2>
 
         <TodoForm addTodo={this.addTodo} />
 
-        <ul>
+        <ul className="list">
           {todos}
         </ul>
       </div>

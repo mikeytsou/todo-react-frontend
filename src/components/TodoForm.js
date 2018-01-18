@@ -11,12 +11,14 @@ class TodoForm extends Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value)
     this.setState({inputValue: e.target.value});
   }
 
   handleSubmit(e) {
     const { inputValue } = this.state;
+
+    if (inputValue === '') return null;
+
     this.props.addTodo(inputValue);
     this.setState({
       inputValue: ''
@@ -25,8 +27,9 @@ class TodoForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="input">
         <input
+          className="todo-input"
           type="text"
           value={this.state.inputValue}
           onChange={e => this.handleChange(e)}
