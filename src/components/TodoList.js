@@ -12,12 +12,26 @@ class TodoList extends Component {
   }
 
   componentWillMount() {
-    this.loadTodos;
+    this.loadTodos();
   }
 
   loadTodos() {
     fetch(URL)
-    .then(data => data.json())
+    .then(res => {
+      if(!res.ok) {
+        if(res.status >= 400 && res.status < 500) {
+          return res.json().then(data => {
+            let error = { errorMessage: data.message };
+            throw error;
+          })
+        }
+        else {
+          let error = { errorMessage: "Please try again later, server is not responding" };
+          throw error;
+        }
+      }
+      return res.json();
+    })
     .then(todos => this.setState({todos}));
   }
 
