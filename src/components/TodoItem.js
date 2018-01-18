@@ -1,12 +1,12 @@
 import React from 'react';
 
-const TodoItem = ({ description, completed }) => {
+const TodoItem = ({ description, completed, onDelete }) => {
   const styles = {
     textDecoration: completed ? 'line-through' : 'none'
   }
 
   return (
-    <li style={styles}>{description}</li>
+    <li style={styles}>{description}<span onClick={onDelete}> X </span></li>
   );
 };
 
